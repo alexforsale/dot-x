@@ -12,4 +12,5 @@
 #+creator: Emacs 30.2 (Org mode 9.8.4)
 #+cite_export:
 #+setupfile: https://fniessen.github.io/org-html-themes/org/html-theme-readtheorg.setup
+#+export_file_name: index.html
 * About
