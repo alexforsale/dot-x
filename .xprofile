@@ -1,0 +1,22 @@
+#!/bin/sh
+  # ~/.xprofile
+  # user X session startup file.
+  # <alexforsale@yahoo.com>
+
+  if [ -d "${HOME}/.config/xprofile.d" ]; then
+      for xfiles in "${HOME}"/.config/xprofile.d/*.sh; do
+          # shellcheck disable=1090
+          . "${xfiles}"
+      done
+      unset xfiles
+  fi
+
+  # set XDG_SESSION_TYPE here making sure it's points to x11
+  if [ -n "${XDG_SESSION_TYPE}" ] || [ "${XDG_SESSION_TYPE}" != "x11" ]; then
+      export XDG_SESSION_TYPE="x11"
+  fi
+
+  # shellcheck disable=1091
+  [ -f "${XDG_CONFIG_HOME}"/xprofile.local ] && . "${XDG_CONFIG_HOME}"/xprofile.local
+  # shellcheck disable=1091
+  [ -f "${HOME}"/.xprofile.local ] && . "${HOME}"/.xprofile.local
