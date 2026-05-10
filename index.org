@@ -13,4 +13,73 @@
 #+cite_export:
 #+setupfile: https://fniessen.github.io/org-html-themes/org/html-theme-readtheorg.setup
 #+export_file_name: index.html
-* About
+
+* Xorg startup files
+** .xprofile
+:PROPERTIES:
+:header-args: :tangle .xprofile :shebang #!/bin/sh
+:END:
+This file (and also =/etc/xprofile= if exists) will be executed at the beginning of X user session, before the window manager starts.
+#+begin_src shell
+  # ~/.xprofile
+  # user X session startup file.
+  # <alexforsale@yahoo.com>
+
+  if [ -d "${HOME}/.config/xprofile.d" ]; then
+      for xfiles in "${HOME}"/.config/xprofile.d/*.sh; do
+          # shellcheck disable=1090
+          . "${xfiles}"
+      done
+      unset xfiles
+  fi
+
+  # set XDG_SESSION_TYPE here making sure it's points to x11
+  if [ -n "${XDG_SESSION_TYPE}" ] || [ "${XDG_SESSION_TYPE}" != "x11" ]; then
+      export XDG_SESSION_TYPE="x11"
+  fi
+
+  # shellcheck disable=1091
+  [ -f "${XDG_CONFIG_HOME}"/xprofile.local ] && . "${XDG_CONFIG_HOME}"/xprofile.local
+  # shellcheck disable=1091
+  [ -f "${HOME}"/.xprofile.local ] && . "${HOME}"/.xprofile.local
+#+end_src
+*** Modules
+**** 00-security.sh
+:PROPERTIES:
+:header-args: :tangle .config/xprofile.d/00-security.sh :shebang #!/bin/sh :mkdirp t
+:END:
+#+begin_src shell
+# various ui-related security settings
+# <alexforsale@yahoo.com>
+
+if [ -f /usr/bin/x11-ssh-askpass ]; then
+    export SSH_ASKPASS=/usr/bin/x11-ssh-askpass
+    export SUDO_ASKPASS=/usr/bin/x11-ssh-askpass
+elif [ -f /usr/lib/ssh/x11-ssh-askpass ]; then
+    [ ! -L ~/.local/bin/ssh-askpass ] &&
+        ln -sf /usr/lib/ssh/x11-ssh-askpass ~/.local/bin/ssh-askpass
+    export SSH_ASKPASS=ssh-askpass
+    export SUDO_ASKPASS="${HOME}"/.local/bin/ssh-askpass
+elif [ -f /usr/local/bin/x11-ssh-askpass ]; then
+    export SSH_ASKPASS=/usr/local/bin/x11-ssh-askpass
+    export SUDO_ASKPASS=/usr/local/bin/x11-ssh-askpass
+fi
+#+end_src
+**** 01-xdg-desktop-portal.sh
+:PROPERTIES:
+:header-args: :tangle .config/xprofile.d/01-xdg-desktop-portal.sh :shebang #!/bin/sh :mkdirp t
+:END:
+#+begin_src shell
+# xdg-desktop-portal settings
+# <alexforsale@yahoo.com>
+
+if [ -z "${XDG_CURRENT_DESKTOP}" ]; then
+    if [ -n "${DESKTOP_SESSION}" ]; then
+        export XDG_CURRENT_DESKTOP="${DESKTOP_SESSION}"
+    elif [ -n "${GDMSESSION}" ]; then
+        export XDG_CURRENT_DESKTOP="${GDMSESSION}"
+    elif [ -n "${XDG_SESSION_DESKTOP}" ]; then
+        export XDG_CURRENT_DESKTOP="${XDG_SESSION_DESKTOP}"
+    fi
+fi
+#+end_src
