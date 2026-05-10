@@ -2,7 +2,7 @@
 #+options: broken-links:nil c:nil creator:nil d:(not "LOGBOOK") date:t e:t
 #+options: email:nil expand-links:t f:t inline:t num:t p:nil pri:nil prop:nil
 #+options: stat:t tags:t tasks:t tex:t timestamp:t title:t toc:t todo:t |:t
-#+title: README
+#+title: index
 #+date: <2026-05-10 Sun>
 #+author: Kristian Alexander P
 #+email: alexforsale@yahoo.com
@@ -11,3 +11,5 @@
 #+exclude_tags: noexport
 #+creator: Emacs 30.2 (Org mode 9.8.4)
 #+cite_export:
+#+setupfile: https://fniessen.github.io/org-html-themes/org/html-theme-readtheorg.setup
+* About
