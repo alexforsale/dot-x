@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-05-10 Sun 15:34 -->
+<!-- 2026-05-10 Sun 16:41 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>index</title>
@@ -27,18 +27,109 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org90f140d">1. About</a></li>
+<li><a href="#orgdb129d9">1. Xorg startup files</a>
+<ul>
+<li><a href="#org3bbf505">1.1. .xprofile</a>
+<ul>
+<li><a href="#orgb9cea11">1.1.1. Modules</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org90f140d" class="outline-2">
-<h2 id="org90f140d"><span class="section-number-2">1.</span> About</h2>
+
+<div id="outline-container-orgdb129d9" class="outline-2">
+<h2 id="orgdb129d9"><span class="section-number-2">1.</span> Xorg startup files</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org3bbf505" class="outline-3">
+<h3 id="org3bbf505"><span class="section-number-3">1.1.</span> .xprofile</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+This file (and also <code>/etc/xprofile</code> if exists) will be executed at the beginning of X user session, before the window manager starts.
+</p>
+<div class="org-src-container">
+<pre class="src src-shell"><span style="color: #b22222;"># </span><span style="color: #b22222;">~/.xprofile
+</span><span style="color: #b22222;"># </span><span style="color: #b22222;">user X session startup file.
+</span><span style="color: #b22222;"># </span><span style="color: #b22222;"><a href="mailto:alexforsale%40yahoo.com">&lt;alexforsale@yahoo.com&gt;</a>
+</span>
+<span style="color: #4169e1;">if</span> [ -d <span style="color: #bc8f8f;">"${HOME}/.config/xprofile.d"</span> ]; <span style="color: #4169e1;">then</span>
+    <span style="color: #4169e1;">for</span> xfiles<span style="color: #4169e1;"> in</span> <span style="color: #bc8f8f;">"${HOME}"</span>/.config/xprofile.d/*.sh; <span style="color: #4169e1;">do</span>
+        <span style="color: #b22222;"># </span><span style="color: #b22222;">shellcheck disable=1090
+</span>        <span style="color: #00008b;">.</span> <span style="color: #bc8f8f;">"${xfiles}"</span>
+    <span style="color: #4169e1;">done</span>
+    <span style="color: #00008b;">unset</span> xfiles
+<span style="color: #4169e1;">fi</span>
+
+<span style="color: #b22222;"># </span><span style="color: #b22222;">set XDG_SESSION_TYPE here making sure it's points to x11
+</span><span style="color: #4169e1;">if</span> [ -n <span style="color: #bc8f8f;">"${XDG_SESSION_TYPE}"</span> ] || [ <span style="color: #bc8f8f;">"${XDG_SESSION_TYPE}"</span> != <span style="color: #bc8f8f;">"x11"</span> ]; <span style="color: #4169e1;">then</span>
+    <span style="color: #00008b;">export</span> <span style="color: #b8860b;">XDG_SESSION_TYPE</span>=<span style="color: #bc8f8f;">"x11"</span>
+<span style="color: #4169e1;">fi</span>
+
+<span style="color: #b22222;"># </span><span style="color: #b22222;">shellcheck disable=1091
+</span>[ -f <span style="color: #bc8f8f;">"${XDG_CONFIG_HOME}"</span>/xprofile.local ] &amp;&amp; <span style="color: #00008b;">.</span> <span style="color: #bc8f8f;">"${XDG_CONFIG_HOME}"</span>/xprofile.local
+<span style="color: #b22222;"># </span><span style="color: #b22222;">shellcheck disable=1091
+</span>[ -f <span style="color: #bc8f8f;">"${HOME}"</span>/.xprofile.local ] &amp;&amp; <span style="color: #00008b;">.</span> <span style="color: #bc8f8f;">"${HOME}"</span>/.xprofile.local
+</pre>
+</div>
+</div>
+<div id="outline-container-orgb9cea11" class="outline-4">
+<h4 id="orgb9cea11"><span class="section-number-4">1.1.1.</span> Modules</h4>
+<div class="outline-text-4" id="text-1-1-1">
+</div>
+<ol class="org-ol">
+<li><a id="orge35a59b"></a>00-security.sh<br />
+<div class="outline-text-5" id="text-1-1-1-1">
+<div class="org-src-container">
+<pre class="src src-shell"><span style="color: #b22222;"># </span><span style="color: #b22222;">various ui-related security settings
+</span><span style="color: #b22222;"># </span><span style="color: #b22222;"><a href="mailto:alexforsale%40yahoo.com">&lt;alexforsale@yahoo.com&gt;</a>
+</span>
+<span style="color: #4169e1;">if</span> [ -f /usr/bin/x11-ssh-askpass ]; <span style="color: #4169e1;">then</span>
+    <span style="color: #00008b;">export</span> <span style="color: #b8860b;">SSH_ASKPASS</span>=/usr/bin/x11-ssh-askpass
+    <span style="color: #00008b;">export</span> <span style="color: #b8860b;">SUDO_ASKPASS</span>=/usr/bin/x11-ssh-askpass
+<span style="color: #4169e1;">elif</span> [ -f /usr/lib/ssh/x11-ssh-askpass ]; <span style="color: #4169e1;">then</span>
+    [ ! -L ~/.local/bin/ssh-askpass ] &amp;&amp;
+        ln -sf /usr/lib/ssh/x11-ssh-askpass ~/.local/bin/ssh-askpass
+    <span style="color: #00008b;">export</span> <span style="color: #b8860b;">SSH_ASKPASS</span>=ssh-askpass
+    <span style="color: #00008b;">export</span> <span style="color: #b8860b;">SUDO_ASKPASS</span>=<span style="color: #bc8f8f;">"${HOME}"</span>/.local/bin/ssh-askpass
+<span style="color: #4169e1;">elif</span> [ -f /usr/local/bin/x11-ssh-askpass ]; <span style="color: #4169e1;">then</span>
+    <span style="color: #00008b;">export</span> <span style="color: #b8860b;">SSH_ASKPASS</span>=/usr/local/bin/x11-ssh-askpass
+    <span style="color: #00008b;">export</span> <span style="color: #b8860b;">SUDO_ASKPASS</span>=/usr/local/bin/x11-ssh-askpass
+<span style="color: #4169e1;">fi</span>
+</pre>
+</div>
+</div>
+</li>
+<li><a id="orgeb1fb45"></a>01-xdg-desktop-portal.sh<br />
+<div class="outline-text-5" id="text-1-1-1-2">
+<div class="org-src-container">
+<pre class="src src-shell"><span style="color: #b22222;"># </span><span style="color: #b22222;">xdg-desktop-portal settings
+</span><span style="color: #b22222;"># </span><span style="color: #b22222;"><a href="mailto:alexforsale%40yahoo.com">&lt;alexforsale@yahoo.com&gt;</a>
+</span>
+<span style="color: #4169e1;">if</span> [ -z <span style="color: #bc8f8f;">"${XDG_CURRENT_DESKTOP}"</span> ]; <span style="color: #4169e1;">then</span>
+    <span style="color: #4169e1;">if</span> [ -n <span style="color: #bc8f8f;">"${DESKTOP_SESSION}"</span> ]; <span style="color: #4169e1;">then</span>
+        <span style="color: #00008b;">export</span> <span style="color: #b8860b;">XDG_CURRENT_DESKTOP</span>=<span style="color: #bc8f8f;">"${DESKTOP_SESSION}"</span>
+    <span style="color: #4169e1;">elif</span> [ -n <span style="color: #bc8f8f;">"${GDMSESSION}"</span> ]; <span style="color: #4169e1;">then</span>
+        <span style="color: #00008b;">export</span> <span style="color: #b8860b;">XDG_CURRENT_DESKTOP</span>=<span style="color: #bc8f8f;">"${GDMSESSION}"</span>
+    <span style="color: #4169e1;">elif</span> [ -n <span style="color: #bc8f8f;">"${XDG_SESSION_DESKTOP}"</span> ]; <span style="color: #4169e1;">then</span>
+        <span style="color: #00008b;">export</span> <span style="color: #b8860b;">XDG_CURRENT_DESKTOP</span>=<span style="color: #bc8f8f;">"${XDG_SESSION_DESKTOP}"</span>
+    <span style="color: #4169e1;">fi</span>
+<span style="color: #4169e1;">fi</span>
+</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="date">Date: 2026-05-10 Sun 00:00</p>
 <p class="author">Author: Kristian Alexander P</p>
-<p class="date">Created: 2026-05-10 Sun 15:34</p>
+<p class="date">Created: 2026-05-10 Sun 16:41</p>
 </div>
 </body>
 </html>
