@@ -83,3 +83,13 @@ if [ -z "${XDG_CURRENT_DESKTOP}" ]; then
     fi
 fi
 #+end_src
+**** 10-numlockx.sh
+:PROPERTIES:
+:header-args: :tangle .config/xprofile.d/10-numlockx.sh :shebang #!/bin/sh :mkdirp t
+:END:
+
+#+begin_src shell
+# ~/.config/xprofile.d/10-numlockx.sh
+# <alexforsale@yahoo.com>
+[ "$(command -v numlockx)" ] && numlockx
+#+end_src
