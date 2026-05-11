@@ -93,3 +93,128 @@ fi
 # <alexforsale@yahoo.com>
 [ "$(command -v numlockx)" ] && numlockx
 #+end_src
+** Xresources
+*** .Xresources
+:PROPERTIES:
+:header-args: :tangle .Xresources
+:END:
+
+#+begin_src conf-xdefaults
+#include ".config/Xresources.d/xterm"
+#include ".config/Xresources.d/URxvt"
+#include ".config/Xresources.d/colors"
+
+! cursor theme
+Xcursor.theme: catppuccin-mocha-light-cursors
+Xcursor.size: 24
+Xft.autohint: 0
+Xft.hinting: 1
+Xft.hintstyle: hintmedium
+Xft.antialias: 1
+Xft.rgba: rgb
+#+end_src
+**** modules
+***** xterm
+:PROPERTIES:
+:header-args: :tangle .config/Xresources.d/xterm :mkdirp t
+:END:
+
+#+begin_src conf-xdefaults
+xterm*termName: xterm-256color
+xterm.vt100.geometry: 80x24
+xterm*saveLines: 4096
+xterm*scrollBar: False
+xterm*.LoginShell: True
+xterm*rightScrollBar: False
+xterm*scrollTtyOutput: False
+xterm.selectToClipboard: true
+xterm.*backarrowKey: false
+xterm*translations: #override \
+Ctrl Shift <KeyPress> C: copy-selection(CLIPBOARD) \n\
+Ctrl Shift <KeyPress> V: insert-selection(CLIPBOARD) \n\
+Ctrl <Btn1Up>: exec-formatted("xdg-open '%t'", PRIMARY) \n\
+~Meta Shift<Key>Tab: string(\033[Z) \n\
+Meta Shift<Key>Tab: string(\033\033[Z) \n\
+Ctrl <Key> minus: smaller-vt-font() \n\
+Ctrl <Key> plus: larger-vt-font() \n\
+Ctrl <Key> 0: set-vt-font(d)
+xterm*eightBitInput: false
+xterm*metaSendsEscape: true
+xterm*charClass: 33:48,37-38:48,45-47:48,64:48,58:48,126:48,61:48,63:48,43:48,35:48
+xterm*renderFont: true
+xterm*faceName: OverpassM Nerd Font Mono
+xterm*faceSize: 10
+#+end_src
+***** URxvt
+:PROPERTIES:
+:header-args: :tangle .config/Xresources.d/URxvt :mkdirp t
+:END:
+
+#+begin_src conf-xdefaults
+! arch package (aur): urxvt-resize-font-git
+URxvt.perl-ext-common: default,tabbed,matcher,resize-font,-tabbed
+URxvt.saveLines: 2000
+URxvt.secondaryScreen: 1
+URxvt.secondaryScroll: 0
+URxvt.scrollBar: False
+URxvt.scrollBar_right: false
+URxvt.scrollBar_floating: false
+URxvt.scrollstyle: rxvt
+URxvt.termName: xterm-256color
+URxvt.cursorBlink: True
+URxvt.secondaryWheel: 1
+URxvt.font: xft:Source\ Code\ Pro:size=8
+URxvt.keysym.C-S-0x43: eval:selection_to_clipboard
+URxvt.keysym.C-S-0x56: eval:paste_clipboard
+URxvt.keysym.C-minus: resize-font:smaller
+URxvt.keysym.C-plus: resize-font:bigger
+URxvt.keysym.C-equal: resize-font:reset
+URxvt.keysym.C-question: resize-font:show
+URxvt.iso14755: false
+URxvt.iso14755_52: false
+URxvt.bell-command: canberra-gtk-play -i bell
+URxvt.loginShell: true
+#+end_src
+***** colors
+:PROPERTIES:
+:header-args: :tangle .config/Xresources.d/colors :mkdirp t
+:END:
+
+#+begin_src conf-xdefaults
+! -*- eval: (rainbow-mode +1) -*-
+,*background: #1e1e2e
+,*foreground: #cdd6f4
+,*cursorColor: #f5e0dc
+
+! black
+,*color0: #45475a
+,*color8: #585b70
+
+! red
+,*color1: #f38ba8
+,*color9: #f38ba8
+
+! green
+,*color2: #a6e3a1
+,*color10: #a6e3a1
+
+! yellow
+,*color3: #f9e2af
+,*color11: #f9e2af
+
+! blue
+,*color4: #89b4fa
+,*color12: #89b4fa
+
+! magenta
+,*color5: #f5c2e7
+,*color13: #f5c2e7
+
+! cyan
+,*color6: #94e2d5
+,*color14: #94e2d5
+
+! white
+,*color7: #bac2de
+,*color15: #a6adc8
+#+end_src

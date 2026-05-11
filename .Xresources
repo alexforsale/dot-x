@@ -1,0 +1,12 @@
+#include ".config/Xresources.d/xterm"
+#include ".config/Xresources.d/URxvt"
+#include ".config/Xresources.d/colors"
+
+! cursor theme
+Xcursor.theme: catppuccin-mocha-light-cursors
+Xcursor.size: 24
+Xft.autohint: 0
+Xft.hinting: 1
+Xft.hintstyle: hintmedium
+Xft.antialias: 1
+Xft.rgba: rgb
