@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-05-11 Mon 08:41 -->
+<!-- 2026-05-11 Mon 12:15 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>index</title>
@@ -27,16 +27,26 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org9b9cc00">1. Xorg startup files</a>
+<li><a href="#org739ac6f">Xorg startup files</a>
 <ul>
-<li><a href="#orgf0cc076">1.1. .xprofile</a>
+<li><a href="#org2f59b22">.xprofile</a>
 <ul>
-<li><a href="#org79ac2ef">1.1.1. Modules</a></li>
+<li><a href="#orgcb82fea">Modules</a>
+<ul>
+<li><a href="#org99c30f3">00-security.sh</a></li>
+<li><a href="#org8c182bb">01-xdg-desktop-portal.sh</a></li>
+<li><a href="#org2955e28">10-numlockx.sh</a></li>
 </ul>
 </li>
-<li><a href="#org1a5e623">1.2. Xresources</a>
+</ul>
+</li>
+<li><a href="#org22d3fd1">Xresources</a>
 <ul>
-<li><a href="#orga7c1820">1.2.1. .Xresources</a></li>
+<li><a href="#org26dbf01">.Xresources</a>
+<ul>
+<li><a href="#org9d47985">modules</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -45,13 +55,13 @@
 </div>
 </div>
 
-<div id="outline-container-org9b9cc00" class="outline-2">
-<h2 id="org9b9cc00"><span class="section-number-2">1.</span> Xorg startup files</h2>
-<div class="outline-text-2" id="text-1">
+<div id="outline-container-org739ac6f" class="outline-2">
+<h2 id="org739ac6f">Xorg startup files</h2>
+<div class="outline-text-2" id="text-org739ac6f">
 </div>
-<div id="outline-container-orgf0cc076" class="outline-3">
-<h3 id="orgf0cc076"><span class="section-number-3">1.1.</span> .xprofile</h3>
-<div class="outline-text-3" id="text-1-1">
+<div id="outline-container-org2f59b22" class="outline-3">
+<h3 id="org2f59b22">.xprofile</h3>
+<div class="outline-text-3" id="text-org2f59b22">
 <p>
 This file (and also <code>/etc/xprofile</code> if exists) will be executed at the beginning of X user session, before the window manager starts.
 </p>
@@ -80,13 +90,13 @@ This file (and also <code>/etc/xprofile</code> if exists) will be executed at th
 </pre>
 </div>
 </div>
-<div id="outline-container-org79ac2ef" class="outline-4">
-<h4 id="org79ac2ef"><span class="section-number-4">1.1.1.</span> Modules</h4>
-<div class="outline-text-4" id="text-1-1-1">
+<div id="outline-container-orgcb82fea" class="outline-4">
+<h4 id="orgcb82fea">Modules</h4>
+<div class="outline-text-4" id="text-orgcb82fea">
 </div>
-<ol class="org-ol">
-<li><a id="orgd9ccb57"></a>00-security.sh<br />
-<div class="outline-text-5" id="text-1-1-1-1">
+<div id="outline-container-org99c30f3" class="outline-5">
+<h5 id="org99c30f3">00-security.sh</h5>
+<div class="outline-text-5" id="text-org99c30f3">
 <div class="org-src-container">
 <pre class="src src-shell"><span style="color: #b22222;"># </span><span style="color: #b22222;">various ui-related security settings
 </span><span style="color: #b22222;"># </span><span style="color: #b22222;"><a href="mailto:alexforsale%40yahoo.com">&lt;alexforsale@yahoo.com&gt;</a>
@@ -106,9 +116,10 @@ This file (and also <code>/etc/xprofile</code> if exists) will be executed at th
 </pre>
 </div>
 </div>
-</li>
-<li><a id="orgd24f378"></a>01-xdg-desktop-portal.sh<br />
-<div class="outline-text-5" id="text-1-1-1-2">
+</div>
+<div id="outline-container-org8c182bb" class="outline-5">
+<h5 id="org8c182bb">01-xdg-desktop-portal.sh</h5>
+<div class="outline-text-5" id="text-org8c182bb">
 <div class="org-src-container">
 <pre class="src src-shell"><span style="color: #b22222;"># </span><span style="color: #b22222;">xdg-desktop-portal settings
 </span><span style="color: #b22222;"># </span><span style="color: #b22222;"><a href="mailto:alexforsale%40yahoo.com">&lt;alexforsale@yahoo.com&gt;</a>
@@ -125,9 +136,10 @@ This file (and also <code>/etc/xprofile</code> if exists) will be executed at th
 </pre>
 </div>
 </div>
-</li>
-<li><a id="orgc8c0560"></a>10-numlockx.sh<br />
-<div class="outline-text-5" id="text-1-1-1-3">
+</div>
+<div id="outline-container-org2955e28" class="outline-5">
+<h5 id="org2955e28">10-numlockx.sh</h5>
+<div class="outline-text-5" id="text-org2955e28">
 <div class="org-src-container">
 <pre class="src src-shell"><span style="color: #b22222;"># </span><span style="color: #b22222;">~/.config/xprofile.d/10-numlockx.sh
 </span><span style="color: #b22222;"># </span><span style="color: #b22222;"><a href="mailto:alexforsale%40yahoo.com">&lt;alexforsale@yahoo.com&gt;</a>
@@ -135,17 +147,16 @@ This file (and also <code>/etc/xprofile</code> if exists) will be executed at th
 </pre>
 </div>
 </div>
-</li>
-</ol>
 </div>
 </div>
-<div id="outline-container-org1a5e623" class="outline-3">
-<h3 id="org1a5e623"><span class="section-number-3">1.2.</span> Xresources</h3>
-<div class="outline-text-3" id="text-1-2">
 </div>
-<div id="outline-container-orga7c1820" class="outline-4">
-<h4 id="orga7c1820"><span class="section-number-4">1.2.1.</span> .Xresources</h4>
-<div class="outline-text-4" id="text-1-2-1">
+<div id="outline-container-org22d3fd1" class="outline-3">
+<h3 id="org22d3fd1">Xresources</h3>
+<div class="outline-text-3" id="text-org22d3fd1">
+</div>
+<div id="outline-container-org26dbf01" class="outline-4">
+<h4 id="org26dbf01">.Xresources</h4>
+<div class="outline-text-4" id="text-org26dbf01">
 <div class="org-src-container">
 <pre class="src src-conf-xdefaults">#include <span style="color: #bc8f8f;">".config/Xresources.d/xterm"</span>
 #include <span style="color: #bc8f8f;">".config/Xresources.d/URxvt"</span>
@@ -162,11 +173,13 @@ This file (and also <code>/etc/xprofile</code> if exists) will be executed at th
 </pre>
 </div>
 </div>
-<ol class="org-ol">
-<li><a id="orgdc1e9bc"></a>modules<br />
-<ol class="org-ol">
-<li><a id="orgeb55ed8"></a>xterm<br />
-<div class="outline-text-6" id="text-1-2-1-1-1">
+<div id="outline-container-org9d47985" class="outline-5">
+<h5 id="org9d47985">modules</h5>
+<div class="outline-text-5" id="text-org9d47985">
+</div>
+<ul class="org-ul">
+<li><a id="orgf05a0fa"></a>xterm<br />
+<div class="outline-text-6" id="text-orgf05a0fa">
 <div class="org-src-container">
 <pre class="src src-conf-xdefaults"><span style="color: #b8860b;">xterm*termName</span>: xterm-256color
 <span style="color: #b8860b;">xterm.vt100.geometry</span>: 80x24
@@ -196,8 +209,8 @@ This file (and also <code>/etc/xprofile</code> if exists) will be executed at th
 </div>
 </div>
 </li>
-<li><a id="org7ea578d"></a>URxvt<br />
-<div class="outline-text-6" id="text-1-2-1-1-2">
+<li><a id="orgd1b3a0e"></a>URxvt<br />
+<div class="outline-text-6" id="text-orgd1b3a0e">
 <div class="org-src-container">
 <pre class="src src-conf-xdefaults"><span style="color: #b22222;">! </span><span style="color: #b22222;">arch package (aur): urxvt-resize-font-git
 </span><span style="color: #b8860b;">URxvt.perl-ext-common</span>: default,tabbed,matcher,resize-font,-tabbed
@@ -226,8 +239,8 @@ This file (and also <code>/etc/xprofile</code> if exists) will be executed at th
 </div>
 </div>
 </li>
-<li><a id="orgd5f15b5"></a>colors<br />
-<div class="outline-text-6" id="text-1-2-1-1-3">
+<li><a id="org6b7d6b5"></a>colors<br />
+<div class="outline-text-6" id="text-org6b7d6b5">
 <div class="org-src-container">
 <pre class="src src-conf-xdefaults"><span style="color: #b22222;">! </span><span style="color: #b22222;">-*- eval: (rainbow-mode +1) -*-
 </span><span style="color: #b8860b;">*background</span>: #1e1e2e
@@ -269,9 +282,8 @@ This file (and also <code>/etc/xprofile</code> if exists) will be executed at th
 </div>
 </div>
 </li>
-</ol>
-</li>
-</ol>
+</ul>
+</div>
 </div>
 </div>
 </div>
@@ -279,7 +291,7 @@ This file (and also <code>/etc/xprofile</code> if exists) will be executed at th
 <div id="postamble" class="status">
 <p class="date">Date: 2026-05-10 Sun 00:00</p>
 <p class="author">Author: Kristian Alexander P</p>
-<p class="date">Created: 2026-05-11 Mon 08:41</p>
+<p class="date">Created: 2026-05-11 Mon 12:15</p>
 </div>
 </body>
 </html>
