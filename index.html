@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-05-11 Mon 02:30 -->
+<!-- 2026-05-11 Mon 08:41 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>index</title>
@@ -27,11 +27,16 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org54b4cde">1. Xorg startup files</a>
+<li><a href="#org9b9cc00">1. Xorg startup files</a>
 <ul>
-<li><a href="#orge386f49">1.1. .xprofile</a>
+<li><a href="#orgf0cc076">1.1. .xprofile</a>
 <ul>
-<li><a href="#org48038f5">1.1.1. Modules</a></li>
+<li><a href="#org79ac2ef">1.1.1. Modules</a></li>
+</ul>
+</li>
+<li><a href="#org1a5e623">1.2. Xresources</a>
+<ul>
+<li><a href="#orga7c1820">1.2.1. .Xresources</a></li>
 </ul>
 </li>
 </ul>
@@ -40,12 +45,12 @@
 </div>
 </div>
 
-<div id="outline-container-org54b4cde" class="outline-2">
-<h2 id="org54b4cde"><span class="section-number-2">1.</span> Xorg startup files</h2>
+<div id="outline-container-org9b9cc00" class="outline-2">
+<h2 id="org9b9cc00"><span class="section-number-2">1.</span> Xorg startup files</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-orge386f49" class="outline-3">
-<h3 id="orge386f49"><span class="section-number-3">1.1.</span> .xprofile</h3>
+<div id="outline-container-orgf0cc076" class="outline-3">
+<h3 id="orgf0cc076"><span class="section-number-3">1.1.</span> .xprofile</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 This file (and also <code>/etc/xprofile</code> if exists) will be executed at the beginning of X user session, before the window manager starts.
@@ -75,12 +80,12 @@ This file (and also <code>/etc/xprofile</code> if exists) will be executed at th
 </pre>
 </div>
 </div>
-<div id="outline-container-org48038f5" class="outline-4">
-<h4 id="org48038f5"><span class="section-number-4">1.1.1.</span> Modules</h4>
+<div id="outline-container-org79ac2ef" class="outline-4">
+<h4 id="org79ac2ef"><span class="section-number-4">1.1.1.</span> Modules</h4>
 <div class="outline-text-4" id="text-1-1-1">
 </div>
 <ol class="org-ol">
-<li><a id="org12dc313"></a>00-security.sh<br />
+<li><a id="orgd9ccb57"></a>00-security.sh<br />
 <div class="outline-text-5" id="text-1-1-1-1">
 <div class="org-src-container">
 <pre class="src src-shell"><span style="color: #b22222;"># </span><span style="color: #b22222;">various ui-related security settings
@@ -102,7 +107,7 @@ This file (and also <code>/etc/xprofile</code> if exists) will be executed at th
 </div>
 </div>
 </li>
-<li><a id="org155ddcf"></a>01-xdg-desktop-portal.sh<br />
+<li><a id="orgd24f378"></a>01-xdg-desktop-portal.sh<br />
 <div class="outline-text-5" id="text-1-1-1-2">
 <div class="org-src-container">
 <pre class="src src-shell"><span style="color: #b22222;"># </span><span style="color: #b22222;">xdg-desktop-portal settings
@@ -121,7 +126,7 @@ This file (and also <code>/etc/xprofile</code> if exists) will be executed at th
 </div>
 </div>
 </li>
-<li><a id="org9aa0f92"></a>10-numlockx.sh<br />
+<li><a id="orgc8c0560"></a>10-numlockx.sh<br />
 <div class="outline-text-5" id="text-1-1-1-3">
 <div class="org-src-container">
 <pre class="src src-shell"><span style="color: #b22222;"># </span><span style="color: #b22222;">~/.config/xprofile.d/10-numlockx.sh
@@ -134,12 +139,147 @@ This file (and also <code>/etc/xprofile</code> if exists) will be executed at th
 </ol>
 </div>
 </div>
+<div id="outline-container-org1a5e623" class="outline-3">
+<h3 id="org1a5e623"><span class="section-number-3">1.2.</span> Xresources</h3>
+<div class="outline-text-3" id="text-1-2">
+</div>
+<div id="outline-container-orga7c1820" class="outline-4">
+<h4 id="orga7c1820"><span class="section-number-4">1.2.1.</span> .Xresources</h4>
+<div class="outline-text-4" id="text-1-2-1">
+<div class="org-src-container">
+<pre class="src src-conf-xdefaults">#include <span style="color: #bc8f8f;">".config/Xresources.d/xterm"</span>
+#include <span style="color: #bc8f8f;">".config/Xresources.d/URxvt"</span>
+#include <span style="color: #bc8f8f;">".config/Xresources.d/colors"</span>
+
+<span style="color: #b22222;">! </span><span style="color: #b22222;">cursor theme
+</span><span style="color: #b8860b;">Xcursor.theme</span>: catppuccin-mocha-light-cursors
+<span style="color: #b8860b;">Xcursor.size</span>: 24
+<span style="color: #b8860b;">Xft.autohint</span>: 0
+<span style="color: #b8860b;">Xft.hinting</span>: 1
+<span style="color: #b8860b;">Xft.hintstyle</span>: hintmedium
+<span style="color: #b8860b;">Xft.antialias</span>: 1
+<span style="color: #b8860b;">Xft.rgba</span>: rgb
+</pre>
+</div>
+</div>
+<ol class="org-ol">
+<li><a id="orgdc1e9bc"></a>modules<br />
+<ol class="org-ol">
+<li><a id="orgeb55ed8"></a>xterm<br />
+<div class="outline-text-6" id="text-1-2-1-1-1">
+<div class="org-src-container">
+<pre class="src src-conf-xdefaults"><span style="color: #b8860b;">xterm*termName</span>: xterm-256color
+<span style="color: #b8860b;">xterm.vt100.geometry</span>: 80x24
+<span style="color: #b8860b;">xterm*saveLines</span>: 4096
+<span style="color: #b8860b;">xterm*scrollBar</span>: False
+<span style="color: #b8860b;">xterm*.LoginShell</span>: True
+<span style="color: #b8860b;">xterm*rightScrollBar</span>: False
+<span style="color: #b8860b;">xterm*scrollTtyOutput</span>: False
+<span style="color: #b8860b;">xterm.selectToClipboard</span>: true
+<span style="color: #b8860b;">xterm.*backarrowKey</span>: false
+<span style="color: #b8860b;">xterm*translations</span>: #override \
+<span style="color: #b8860b;">Ctrl Shift &lt;KeyPress&gt; C</span>: copy-selection(CLIPBOARD) \n\
+<span style="color: #b8860b;">Ctrl Shift &lt;KeyPress&gt; V</span>: insert-selection(CLIPBOARD) \n\
+<span style="color: #b8860b;">Ctrl &lt;Btn1Up&gt;</span>: exec-formatted(<span style="color: #bc8f8f;">"xdg-open '%t'"</span>, PRIMARY) \n\
+<span style="color: #b8860b;">~Meta Shift&lt;Key&gt;Tab</span>: string(\033[Z) \n\
+<span style="color: #b8860b;">Meta Shift&lt;Key&gt;Tab</span>: string(\033\033[Z) \n\
+<span style="color: #b8860b;">Ctrl &lt;Key&gt; minus</span>: smaller-vt-font() \n\
+<span style="color: #b8860b;">Ctrl &lt;Key&gt; plus</span>: larger-vt-font() \n\
+<span style="color: #b8860b;">Ctrl &lt;Key&gt; 0</span>: set-vt-font(d)
+<span style="color: #b8860b;">xterm*eightBitInput</span>: false
+<span style="color: #b8860b;">xterm*metaSendsEscape</span>: true
+<span style="color: #b8860b;">xterm*charClass</span>: 33:48,37-38:48,45-47:48,64:48,58:48,126:48,61:48,63:48,43:48,35:48
+<span style="color: #b8860b;">xterm*renderFont</span>: true
+<span style="color: #b8860b;">xterm*faceName</span>: OverpassM Nerd Font Mono
+<span style="color: #b8860b;">xterm*faceSize</span>: 10
+</pre>
+</div>
+</div>
+</li>
+<li><a id="org7ea578d"></a>URxvt<br />
+<div class="outline-text-6" id="text-1-2-1-1-2">
+<div class="org-src-container">
+<pre class="src src-conf-xdefaults"><span style="color: #b22222;">! </span><span style="color: #b22222;">arch package (aur): urxvt-resize-font-git
+</span><span style="color: #b8860b;">URxvt.perl-ext-common</span>: default,tabbed,matcher,resize-font,-tabbed
+<span style="color: #b8860b;">URxvt.saveLines</span>: 2000
+<span style="color: #b8860b;">URxvt.secondaryScreen</span>: 1
+<span style="color: #b8860b;">URxvt.secondaryScroll</span>: 0
+<span style="color: #b8860b;">URxvt.scrollBar</span>: False
+<span style="color: #b8860b;">URxvt.scrollBar_right</span>: false
+<span style="color: #b8860b;">URxvt.scrollBar_floating</span>: false
+<span style="color: #b8860b;">URxvt.scrollstyle</span>: rxvt
+<span style="color: #b8860b;">URxvt.termName</span>: xterm-256color
+<span style="color: #b8860b;">URxvt.cursorBlink</span>: True
+<span style="color: #b8860b;">URxvt.secondaryWheel</span>: 1
+<span style="color: #b8860b;">URxvt.font</span>: xft:Source\ Code\ Pro:size=8
+<span style="color: #b8860b;">URxvt.keysym.C-S-0x43</span>: eval:selection_to_clipboard
+<span style="color: #b8860b;">URxvt.keysym.C-S-0x56</span>: eval:paste_clipboard
+<span style="color: #b8860b;">URxvt.keysym.C-minus</span>: resize-font:smaller
+<span style="color: #b8860b;">URxvt.keysym.C-plus</span>: resize-font:bigger
+<span style="color: #b8860b;">URxvt.keysym.C-equal</span>: resize-font:reset
+<span style="color: #b8860b;">URxvt.keysym.C-question</span>: resize-font:show
+<span style="color: #b8860b;">URxvt.iso14755</span>: false
+<span style="color: #b8860b;">URxvt.iso14755_52</span>: false
+<span style="color: #b8860b;">URxvt.bell-command</span>: canberra-gtk-play -i bell
+<span style="color: #b8860b;">URxvt.loginShell</span>: true
+</pre>
+</div>
+</div>
+</li>
+<li><a id="orgd5f15b5"></a>colors<br />
+<div class="outline-text-6" id="text-1-2-1-1-3">
+<div class="org-src-container">
+<pre class="src src-conf-xdefaults"><span style="color: #b22222;">! </span><span style="color: #b22222;">-*- eval: (rainbow-mode +1) -*-
+</span><span style="color: #b8860b;">*background</span>: #1e1e2e
+<span style="color: #b8860b;">*foreground</span>: #cdd6f4
+<span style="color: #b8860b;">*cursorColor</span>: #f5e0dc
+
+<span style="color: #b22222;">! </span><span style="color: #b22222;">black
+</span><span style="color: #b8860b;">*color0</span>: #45475a
+<span style="color: #b8860b;">*color8</span>: #585b70
+
+<span style="color: #b22222;">! </span><span style="color: #b22222;">red
+</span><span style="color: #b8860b;">*color1</span>: #f38ba8
+<span style="color: #b8860b;">*color9</span>: #f38ba8
+
+<span style="color: #b22222;">! </span><span style="color: #b22222;">green
+</span><span style="color: #b8860b;">*color2</span>: #a6e3a1
+<span style="color: #b8860b;">*color10</span>: #a6e3a1
+
+<span style="color: #b22222;">! </span><span style="color: #b22222;">yellow
+</span><span style="color: #b8860b;">*color3</span>: #f9e2af
+<span style="color: #b8860b;">*color11</span>: #f9e2af
+
+<span style="color: #b22222;">! </span><span style="color: #b22222;">blue
+</span><span style="color: #b8860b;">*color4</span>: #89b4fa
+<span style="color: #b8860b;">*color12</span>: #89b4fa
+
+<span style="color: #b22222;">! </span><span style="color: #b22222;">magenta
+</span><span style="color: #b8860b;">*color5</span>: #f5c2e7
+<span style="color: #b8860b;">*color13</span>: #f5c2e7
+
+<span style="color: #b22222;">! </span><span style="color: #b22222;">cyan
+</span><span style="color: #b8860b;">*color6</span>: #94e2d5
+<span style="color: #b8860b;">*color14</span>: #94e2d5
+
+<span style="color: #b22222;">! </span><span style="color: #b22222;">white
+</span><span style="color: #b8860b;">*color7</span>: #bac2de
+<span style="color: #b8860b;">*color15</span>: #a6adc8
+</pre>
+</div>
+</div>
+</li>
+</ol>
+</li>
+</ol>
+</div>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="date">Date: 2026-05-10 Sun 00:00</p>
 <p class="author">Author: Kristian Alexander P</p>
-<p class="date">Created: 2026-05-11 Mon 02:30</p>
+<p class="date">Created: 2026-05-11 Mon 08:41</p>
 </div>
 </body>
 </html>
